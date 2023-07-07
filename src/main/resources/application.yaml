@@ -14,10 +14,10 @@ management:
   endpoint:
     info:
       enabled: true
-spring:
-  boot:
-    admin:
-      client:
-        url: http://localhost:9999
+#spring:
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:9999
   application:
     name: local-accelerator
