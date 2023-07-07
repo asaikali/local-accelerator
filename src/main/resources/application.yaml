@@ -1,0 +1,23 @@
+server:
+  port: 7788
+accelerator:
+  locations:
+    - examples/Spring-Boot-REST-API-Accelerator/accelerator.yaml
+    - examples/another-accelerator/accelerator.yaml
+
+# expose actuator endpoints with no security
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    info:
+      enabled: true
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:9999
+  application:
+    name: local-accelerator

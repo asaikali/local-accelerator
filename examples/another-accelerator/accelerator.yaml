@@ -1,0 +1,30 @@
+#
+# This section defines the settings that affect how the User interface
+# presented to users see docs at
+# https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-application-accelerator-creating-accelerators-accelerator-yaml.html#accelerator-0
+#
+accelerator:
+
+  displayName: Another Example Accelerator
+  description: Another Example
+  iconUrl: https://raw.githubusercontent.com/sample-accelerators/icons/master/icon-cloud.png
+  tags:
+    - Java
+    - Spring
+    - API
+  options:
+    #
+    # UI option to set the java version for the project
+    #
+    - name: javaVersion
+      dataType: string
+      required: true
+      defaultValue: "17"
+      label: Which Java version do you want to use?
+      description: Java version used by the generated project
+      inputType: select
+      choices:
+        - text: 11
+          value: "11"
+        - text: 17 (Recommended)
+          value: "17"
