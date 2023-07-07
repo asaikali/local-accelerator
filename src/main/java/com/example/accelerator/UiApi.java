@@ -68,4 +68,9 @@ public class UiApi {
     Map<String,Object> result =  Map.of("_embedded", Map.of("accelerators", accelerators));
     return result;
   }
+
+  @GetMapping("api/git-providers")
+  String getGitProviders() {
+    return "";
+  }
 }
