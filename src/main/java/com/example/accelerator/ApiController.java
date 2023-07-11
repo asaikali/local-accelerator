@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.yaml.snakeyaml.Yaml;
+import reactor.core.publisher.Mono;
 
 @RestController
 public class ApiController {
@@ -19,7 +20,7 @@ public class ApiController {
   }
 
   @GetMapping("api/proxy/accelerators")
-  Map<String,Object> getAccelerators() {
+  Mono<Map<String,Object>> getAccelerators() {
     ArrayList accelerators = new ArrayList();
     for (int i = 0; i < this.acceleratorLocations.getLocations().length ; i++) {
       Map<String,Object> accelerator = this.getAccelerator(acceleratorLocations.getLocations()[i]);
@@ -28,17 +29,17 @@ public class ApiController {
       accelerators.add(accelerator);
     }
 
-    return Map.of("_embedded", Map.of("accelerators", accelerators));
+    return Mono.just(Map.of("_embedded", Map.of("accelerators", accelerators)));
   }
   @GetMapping("api/proxy/accelerators/options")
-  Map<String,Object> getOptions(@RequestParam("name") Integer index) {
+  Mono<Map<String,Object>> getOptions(@RequestParam("name") Integer index) {
     Map<String,Object> accelerator = getAccelerator(acceleratorLocations.getLocations()[index]);
-    return Map.of("options", accelerator.get("options"));
+    return Mono.just(Map.of("options", accelerator.get("options")));
   }
 
   @GetMapping("api/git-providers")
-  String getGitProviders() {
-    return "";
+  Mono<String> getGitProviders() {
+    return Mono.just("");
   }
 
   private Map<String,Object> loadYaml(String filename) {

@@ -14,10 +14,19 @@ management:
   endpoint:
     info:
       enabled: true
-#spring:
+spring:
 #  boot:
 #    admin:
 #      client:
 #        url: http://localhost:9999
   application:
     name: local-accelerator
+  cloud:
+    gateway:
+      routes:
+        - id: acc-engine
+          uri: http://localhost:9090
+          predicates:
+            - Path=/invocations/**
+          filters:
+            - StripPrefix=1
