@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  acc-engine:
+    # acc engine acc-engine:1.5.1
+    image: "registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:dc3cdd518620aadd9cabce5939af9bd6de916be03c8c3983ae5f4b5f45b4b70d"
+    ports:
+      - "9090:8080"
+    restart: unless-stopped
